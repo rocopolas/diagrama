@@ -1,0 +1,265 @@
+<!DOCTYPE html5>
+<html>
+    <input  class="messageCheckbox" type="radio" value="1" name="mailId[]">text
+    <input  id = "radioboton"class="messageCheckbox" type="radio" value="2" name="mailId[]">line
+    <div class="dropdown">
+        <button class="dropbtn">Menú</button>
+        <div class="dropdown-content">
+          <a onclick="agilizar()" href="#normal">│</a>
+          <a onclick="agilizar()" href="#hor">_ (normal)</a>
+          <a onclick="agilizar()" href="#horap">_ (pegado)</a>
+        </div>
+    </div>
+    <button class="re" onclick="ret()">retroceder</button>
+    <button class="re" onclick="ter()">terminar</button>
+
+    <script>
+        function agilizar(){
+            var check = document.getElementById("radioboton");
+            check.checked = true;
+        }
+    </script>
+
+    <style>
+        .dropbtn {
+        background-color: #ffffff;
+        color: rgb(0, 0, 0);
+        padding: 16px;
+        font-size: 16px;
+        border: none;
+        }
+
+        /* Estilos para el contenedor del menú desplegable */
+        .dropdown {
+        position: relative;
+        display: inline-block;
+        }
+
+        /* Estilos para el contenido del menú desplegable */
+        .dropdown-content {
+        display: none;
+        position: absolute;
+        background-color: #f9f9f9;
+        min-width: 160px;
+        box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+        z-index: 1;
+        }
+
+        /* Estilos para los enlaces dentro del menú desplegable */
+        .dropdown-content a {
+        color: black;
+        padding: 12px 16px;
+        text-decoration: none;
+        display: block;
+        }
+
+        /* Estilos para los enlaces al pasar el mouse */
+        .dropdown-content a:hover {
+        background-color: #f1f1f1;
+        }
+
+        /* Mostrar el menú desplegable cuando el botón es presionado */
+        .dropdown:hover .dropdown-content {
+        display: block;
+        }
+        .re{
+            height: 20px;
+        }
+
+        button{
+            width: 100px;
+            height: 50px;
+        }
+
+        textarea{
+            width: 100px;
+            height: 50px;
+        }
+
+        .line {
+            width: 2px;
+            height: 50px; 
+            background-color: black;
+            margin: 0px 0; 
+            margin-left: 50px;
+            margin-right: 48px;
+        }
+
+        .lineaHor {
+            width: 100px;
+            height: 2px; 
+            background-color: black;
+            margin: 0px 0; 
+            margin-left: 0px;
+            margin-right: 0px;
+        }
+
+        .lineaHorAr {
+            width: 100px;
+            height: 2px; 
+            background-color: black;
+            margin: 0px 0; 
+            margin-top: 0px;
+            margin-left: 0px;
+            margin-right: 0px;
+            margin-bottom: 50px;
+        }
+
+        
+
+        .blanco {
+            width: 100px;
+            height: 50px;
+            border-bottom: 1px solid #ffffff;
+        }
+    </style>
+    <script>
+    var ultMovimiento;
+    function lol(id) {
+        var checkedValue = null;
+        var inputElements = document.getElementsByClassName('messageCheckbox');
+        for (var i = 0; i < inputElements.length; ++i) {
+            if (inputElements[i].checked) {
+                checkedValue = inputElements[i].value;
+                break;
+            }
+        }
+
+        if (checkedValue === "1"){
+            var botCambiar = document.getElementById(id);
+            var newBox = document.createElement("textarea");
+            newBox.textContent = "...";
+            newBox.id = id;
+            ultMovimiento = newBox.id;
+            
+            botCambiar.parentNode.replaceChild(newBox,botCambiar)
+        } if (checkedValue === "2"){
+            var botCambiar = document.getElementById(id);
+
+            var hash = window.location.hash;
+            var linea = document.createElement('div');
+            if(hash === "#normal"){
+                linea.className = "line";
+            } if(hash === "#hor"){
+                linea.className = "lineaHor";
+            } if(hash === "#horap"){
+                linea.className = "lineaHorAr";
+            }
+            
+            linea.id = id;
+            ultMovimiento = id;
+            botCambiar.parentNode.replaceChild(linea,botCambiar)
+        } 
+    }
+
+    function ret(){
+        var botCambiar = document.getElementById(ultMovimiento);
+
+        var volver = document.createElement('button');
+        volver.id = ultMovimiento;
+        volver.onclick = function(){
+            lol(volver.id)
+        };
+        volver.textContent = "+";
+
+        botCambiar.parentNode.replaceChild(volver,botCambiar)
+    }
+
+    function ter(){
+        var aux;
+        for (var i = 1; i < 50; ++i) {
+            for (var x = 1; x < 17; ++x) {
+                aux = x.toString() + i.toString();
+                
+                if (document.getElementById(aux).textContent === "+"){
+                    var botCambiar = document.getElementById(aux);
+                 
+
+                    var borrar = document.createElement('div');
+                    borrar.className = "blanco";
+
+                    botCambiar.parentNode.replaceChild(borrar,botCambiar)
+                }
+            }
+        }
+    }
+
+        var x = 1;
+        for (let i = 1; i < 50; i++) {
+            x = 1;
+            document.write(`
+    <table> 
+        <tr>
+            <th>
+                <button id=${x}${i} onclick="lol(this.id)">+</button>
+            </th>`); x++;
+            document.write(`
+            <th>
+                <button id=${x}${i} onclick="lol(this.id)">+</button>
+            </th>`); x++;
+            document.write(`
+            <th>
+                <button id=${x}${i} onclick="lol(this.id)">+</button>
+            </th>`); x++;
+            document.write(`
+            <th>
+                <button id=${x}${i} onclick="lol(this.id)">+</button>
+            </th>`); x++;
+            document.write(`
+            <th>
+                <button id=${x}${i} onclick="lol(this.id)">+</button>
+            </th>`); x++;
+            document.write(`
+            <th>
+                <button id=${x}${i} onclick="lol(this.id)">+</button>
+            </th>`); x++;
+            document.write(`
+            <th>
+                <button id=${x}${i} onclick="lol(this.id)">+</button>
+            </th>`); x++;
+            document.write(`
+            <th>
+                <button id=${x}${i} onclick="lol(this.id)">+</button>
+            </th>`); x++;
+            document.write(`
+            <th>
+                <button id=${x}${i} onclick="lol(this.id)">+</button>
+            </th>`); x++;
+            document.write(`
+            <th>
+                <button id=${x}${i} onclick="lol(this.id)">+</button>
+            </th>`); x++;
+            document.write(`
+            <th>
+                <button id=${x}${i} onclick="lol(this.id)">+</button>
+            </th>`); x++;
+            document.write(`
+            <th>
+                <button id=${x}${i} onclick="lol(this.id)">+</button>
+            </th>`); x++;
+            document.write(`
+            <th>
+                <button id=${x}${i} onclick="lol(this.id)">+</button>
+            </th>`); x++;
+            document.write(`
+            <th>
+                <button id=${x}${i} onclick="lol(this.id)">+</button>
+            </th>`); x++;
+            document.write(`
+            <th>
+                <button id=${x}${i} onclick="lol(this.id)">+</button>
+            </th>`); x++;
+            document.write(`
+            <th>
+                <button id=${x}${i} onclick="lol(this.id)">+</button>
+            </th>
+        </tr>
+    </table>
+    `); x++;
+        }
+    
+    
+    
+    
+    </script>
+</html>
