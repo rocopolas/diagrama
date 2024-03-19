@@ -5,9 +5,16 @@
     <div class="dropdown">
         <button class="dropbtn">Menú</button>
         <div class="dropdown-content">
+          <a onclick="agilizar()" href="#ari">┌</a>
+          <a onclick="agilizar()" href="#arm">─</a>
+          <a onclick="agilizar()" href="#ad">┐</a>
+          <a onclick="agilizar()" href="#mi">│</a>
           <a onclick="agilizar()" href="#normal">│</a>
-          <a onclick="agilizar()" href="#hor">_ (normal)</a>
-          <a onclick="agilizar()" href="#horap">_ (pegado)</a>
+          <a onclick="agilizar()" href="#md">│</a>
+          <a onclick="agilizar()" href="#abi">└</a>
+          <a onclick="agilizar()" href="#abm">─</a>
+          <a onclick="agilizar()" href="#abd">┘</a>
+          <a onclick="agilizar()" href="#hor">- (medio)</a>
         </div>
     </div>
     <button class="re" onclick="ret()">retroceder</button>
@@ -40,7 +47,7 @@
         display: none;
         position: absolute;
         background-color: #f9f9f9;
-        min-width: 160px;
+        min-width: 140px;
         box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
         z-index: 1;
         }
@@ -50,7 +57,7 @@
         color: black;
         padding: 12px 16px;
         text-decoration: none;
-        display: block;
+        display: inline-block;
         }
 
         /* Estilos para los enlaces al pasar el mouse */
@@ -85,6 +92,34 @@
             margin-right: 48px;
         }
 
+        .linemd {
+            width: 2px;
+            height: 50px; 
+            background-color: black;
+            margin: 0px 0; 
+            margin-left: 100px;
+            margin-right: 0px;
+        }
+
+        .linemi {
+            width: 2px;
+            height: 50px; 
+            background-color: black;
+            margin: 0px 0; 
+            margin-left: 0px;
+            margin-right: 100px;
+        }
+
+        .lineabm {
+            width: 100px;
+            height: 2px; 
+            background-color: black;
+            margin: 0px 0; 
+            margin-top: 50px    ;
+            margin-left: 0px;
+            margin-right: 0px;
+        }
+
         .lineaHor {
             width: 100px;
             height: 2px; 
@@ -105,7 +140,37 @@
             margin-bottom: 50px;
         }
 
-        
+        .lineaari {
+            width: 100px;
+            height: 50px;
+            background: linear-gradient(to bottom, black 2px, transparent 2px), linear-gradient(to right, black 2px, transparent 2px);
+            background-position: bottom left, top left;
+            background-repeat: no-repeat;
+        }
+
+        .lineaard {
+            width: 100px;
+            height: 50px;
+            background: linear-gradient(to bottom, black 2px, transparent 2px), linear-gradient(to left, black 2px, transparent 2px);
+            background-position: bottom left, top left;
+            background-repeat: no-repeat;
+        }
+
+        .lineaabi {
+            width: 100px;
+            height: 50px;
+            background: linear-gradient(to top, black 2px, transparent 2px), linear-gradient(to right, black 2px, transparent 2px);
+            background-position: bottom left, top left;
+            background-repeat: no-repeat;
+        }
+
+        .lineaabd {
+            width: 100px;
+            height: 50px;
+            background: linear-gradient(to top, black 2px, transparent 2px), linear-gradient(to left, black 2px, transparent 2px);
+            background-position: bottom left, top left;
+            background-repeat: no-repeat;
+        }
 
         .blanco {
             width: 100px;
@@ -142,8 +207,22 @@
                 linea.className = "line";
             } if(hash === "#hor"){
                 linea.className = "lineaHor";
-            } if(hash === "#horap"){
+            } if(hash === "#arm"){
                 linea.className = "lineaHorAr";
+            } if(hash === "#mi"){
+                linea.className = "linemi";
+            } if(hash === "#md"){
+                linea.className = "linemd";
+            } if(hash === "#abm"){
+                linea.className = "lineabm";
+            } if(hash === "#ari"){
+                linea.className = "lineaari";
+            } if(hash === "#ad"){
+                linea.className = "lineaard";
+            } if(hash === "#abi"){
+                linea.className = "lineaabi";
+            } if(hash === "#abd"){
+                linea.className = "lineaabd";
             }
             
             linea.id = id;
